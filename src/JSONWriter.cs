@@ -47,7 +47,7 @@ namespace TinyJson
                         stringBuilder.Append(str[i]);
                 stringBuilder.Append('"');
             }
-            else if (type == typeof(byte) || type == typeof(int))
+            else if (type == typeof(byte) || type == typeof(int) || type==typeof(long))
             {
                 stringBuilder.Append(item.ToString());
             }

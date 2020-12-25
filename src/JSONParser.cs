@@ -292,8 +292,12 @@ namespace TinyJson
                 }
                 else
                 {
-                    int result;
-                    int.TryParse(json, out result);
+		    long tv;
+		    long.TryParse(json, out tv);
+		    if ((tv<int.MinValue) || (tv>int.MaxValue)) return tv;
+		    
+                    int result = (int)tv;
+                    //int.TryParse(json, out result);
                     return result;
                 }
             }

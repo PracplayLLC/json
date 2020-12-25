@@ -151,17 +151,28 @@ namespace TinyJson.Test
             public float B;
             public string C { get; set; }
             public List<int> D { get; set; }
+            public long E { get; set; }
+            public double F { get; set; }
+            public decimal G { get; set; }
+            public bool H { get; set; }
+
         }
 
         [TestMethod]
         public void TestSimpleObject()
         {
-            SimpleObject value = "{\"A\":123,\"b\":456,\"C\":\"789\",\"D\":[10,11,12]}".FromJson<SimpleObject>();
+            SimpleObject value = "{\"A\":123,\"b\":456,\"C\":\"789\",\"D\":[10,11,12],\"E\":3000000000,\"F\":3.14,\"G\":2.718,\"H\":true}".FromJson<SimpleObject>();
+
             Assert.IsNotNull(value);
             Assert.AreEqual(123, value.A);
             Assert.AreEqual(456f, value.B);
             Assert.AreEqual("789", value.C);
             CollectionAssert.AreEqual(new List<int> { 10, 11, 12 }, value.D);
+            Assert.AreEqual (3000000000, value.E, "bad long value");
+            Assert.AreEqual (3.14, value.F, "bad double");
+            Assert.AreEqual (2.718m, value.G, "bad decimal");
+            Assert.AreEqual (true, value.H, "bad bool");
+
 
             value = "dfpoksdafoijsdfij".FromJson<SimpleObject>();
             Assert.IsNull(value);

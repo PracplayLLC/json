@@ -140,6 +140,24 @@ namespace TinyJson.Test
             Assert.AreEqual("{\"a\":10,\"B\":20,\"c\":30,\"D\":40}", new DataMemberObject { A = 10, B = 20, C = 30, D = 40 }.ToJson());
         }
 
+	class SimpleObject2
+        {
+            public int D { get; set; }
+
+            public long E { get; set; }
+            public double F { get; set; }
+            public decimal G { get; set; }
+            public bool H { get; set; }
+        }
+
+	[TestMethod]
+        public void TestSimpleObject2()
+        {
+            decimal v = 40;
+            Assert.AreEqual("{\"D\":40,\"E\":41,\"F\":42,\"G\":43,\"H\":true}", new SimpleObject2 { D = (int)v++, E=(long)v++,F=(double)v++,G=v++,H= v%2==0 }.ToJson());
+        }
+
+
         public class EnumClass
         {
             public Color Colors;
